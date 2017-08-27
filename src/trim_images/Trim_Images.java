@@ -23,20 +23,22 @@ public class Trim_Images {
      */
     public static void main(String[] args) throws IOException {
         String path = "C:\\Users\\eduar\\Documents\\NetBeansProjects\\Trim_Images\\test\\";
-        String baseFileName = "mW33.67610_S70.16269";
+        String baseFileName = "mW33.68044_S70.16791";
         File img = new File(path + baseFileName + ".png");
         
         Image largeMap = ImageIO.read(img);
         
-        final int smallSize = 360, overlap = 40, smallCount = 3;
+        final int smallSize = 340, overlap = 40, smallCount = 2;
         for (int i = 0; i < smallCount; i++) {
-            for (int j = 0; i < smallCount; j++) {
+            for (int j = 0; j < smallCount; j++) {
                 BufferedImage smallMap = new BufferedImage(smallSize, smallSize, BufferedImage.TYPE_INT_ARGB);
                 int x = i * (smallSize - overlap);
                 int y = j * (smallSize - overlap);
                 smallMap.getGraphics().drawImage(largeMap, 0, 0, smallSize, smallSize, 
                        x, y, x + smallSize, y + smallSize, null);
                 ImageIO.write(smallMap, "png", new File(path + baseFileName + "_" + i + j + ".png"));
+/*                System.out.println("Press a key");
+                System.in.read();*/
             }
         }
     }
