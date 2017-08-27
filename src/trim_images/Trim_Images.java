@@ -22,10 +22,13 @@ public class Trim_Images {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        String baseFileName = "imagename";
-        Image largeMap = ImageIO.read(new File(baseFileName + ".png"));
-
-        int smallSize = 360, overlap = 40, smallCount = 3;
+        String path = "C:\\Users\\eduar\\Documents\\NetBeansProjects\\Trim_Images\\test\\";
+        String baseFileName = "mW33.67610_S70.16269";
+        File img = new File(path + baseFileName + ".png");
+        
+        Image largeMap = ImageIO.read(img);
+        
+        final int smallSize = 360, overlap = 40, smallCount = 3;
         for (int i = 0; i < smallCount; i++) {
             for (int j = 0; i < smallCount; j++) {
                 BufferedImage smallMap = new BufferedImage(smallSize, smallSize, BufferedImage.TYPE_INT_ARGB);
@@ -33,7 +36,7 @@ public class Trim_Images {
                 int y = j * (smallSize - overlap);
                 smallMap.getGraphics().drawImage(largeMap, 0, 0, smallSize, smallSize, 
                        x, y, x + smallSize, y + smallSize, null);
-                ImageIO.write(smallMap, "png", new File(baseFileName + "_" + i + j + ".png"));
+                ImageIO.write(smallMap, "png", new File(path + baseFileName + "_" + i + j + ".png"));
             }
         }
     }
